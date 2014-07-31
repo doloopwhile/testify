@@ -31,6 +31,13 @@ func (suite *Suite) SetT(t *testing.T) {
 	suite.Assertions = assert.New(t)
 }
 
+// Terminate current test if given assersion is failed
+func (suite *Suite) Must(cond bool) {
+	if !cond {
+		suite.t.FailNow()
+	}
+}
+
 // Run takes a testing suite and runs all of the tests attached
 // to it.
 func Run(t *testing.T, suite TestingSuite) {
